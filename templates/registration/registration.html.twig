@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <form style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-direction: column;">
+        <h2>Регистрация</h2>
+
+        <input placeholder="Логин">
+        <input placeholder="Почта">
+        <input placeholder="Пароль">
+        <input placeholder="Повторите пароль">
+
+        <p>Уже есть аккаунт? <a href="{{ path('login') }}">Войти</a></p>
+    </form>
+{% endblock %}

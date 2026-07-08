@@ -5,12 +5,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class HomeController extends AbstractController
+class LoginController extends AbstractController
 {
-    #[Route('/', name: 'home')]
-    public function homePage(): Response
+    #[Route('/login', name: 'login')]
+    public function loginPage(): Response
     {
-        return $this->render('home/index.html.twig');
+        return $this->render('login/login.html.twig');
     }
 }
 

@@ -4,7 +4,7 @@
     <h1 style="text-align: center">Главная страница Allrecipes</h1>
 
     <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-        <button>Вход</button>
-        <button>Регистрация</button>
+        <button><a href="{{ path('login') }}">Вход</a></button>
+        <button><a href="{{ path('registration' )}}">Регистрация</a></button>
     </div>
 {% endblock %}
