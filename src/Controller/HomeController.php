@@ -12,6 +12,12 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig');
     }
+
+    #[Route('/logout', name: 'logout')]
+    public function logout(): Response
+    {
+        return $this->redirectToRoute('home');
+    }
 }
 
 ?>
