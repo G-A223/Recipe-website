@@ -1,10 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if app.user %}
+        <ul style="list-style-type: none; margin: 0; padding: 0;">
+            <li>Привет, {{ app.user.login }}</li>
+            <li><a href="{{ path('logout') }}">Выйти</a></li>
+        </ul>
+    {% endif %}
     <h1 style="text-align: center">Главная страница Allrecipes</h1>
 
+    {% if not app.user %}
     <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
         <button><a href="{{ path('login') }}">Вход</a></button>
         <button><a href="{{ path('registration' )}}">Регистрация</a></button>
     </div>
+    {% endif %}
 {% endblock %}

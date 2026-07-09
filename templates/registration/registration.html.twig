@@ -1,13 +1,16 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <form style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-direction: column;">
+    <form style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-direction: column;"
+            action="{{ path('registration') }}" method="post" name="register_form">
         <h2>Регистрация</h2>
 
-        <input placeholder="Логин">
-        <input placeholder="Почта">
-        <input placeholder="Пароль">
-        <input placeholder="Повторите пароль">
+        <input type="text" id="username" name="_username" placeholder="Логин" required>
+        <input type="email" id="email" name="_email" placeholder="Почта" required>
+        <input type="password" id="password" name="_password" placeholder="Пароль" required>
+        <input type="password" id="password_repeat" name="_password_repeat" placeholder="Повторите пароль" required>
+
+        <button type="submit">Зарегистрироваться</button>
 
         <p>Уже есть аккаунт? <a href="{{ path('login') }}">Войти</a></p>
     </form>

@@ -1,12 +1,22 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <form style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-direction: column;">
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <form style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-direction: column;"
+        action="{{ path('login') }}" method="post">
         <h2>Вход</h2>
 
-        <input placeholder="Почта">
-        <input placeholder="Пароль">
+        <input type="email" id="email" name="_email" placeholder="Почта"  value="{{ last_username }}" required>
+        <input type="password" id="password" name="_password" placeholder="Пароль" required>
+
+        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+
+        <button type="submit">Войти</button>
 
         <p><a href="#">Забыли пароль?</a></p>
+        <p>Нет аккаунта? <a href="{{ path('registration') }}">Зарегистрироваться</a></p>
     </form>
 {% endblock %}
