@@ -12,6 +12,7 @@ body {
     left: 0px;
     width: 100%;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    z-index: 1000;
 }
 
 .logo img{
@@ -65,7 +66,59 @@ body {
     margin: 5px;
 }
 
+.sidebar {
+    height: 100%;
+    width: 20%;
+    background-color: rgb(245, 245, 245);;
+    position: fixed;
+    box-shadow: -10px 0 20px -5px rgba(0, 0, 0, 0.75);
+    overflow-y: visible;
+}
+
+.sidebar-content {
+    margin: 8px;
+    padding-top: 65px;
+}
+
+.sidebar li{
+    list-style-type: none;;
+}
+
+.sidebar ul{
+    display: block;
+    padding: 0;
+    margin: 5px;
+}
+
+.sidebar li{
+    display: block;
+    margin: 0 5px 0 5px;
+    padding: 10px 20px 10px 20px;
+    transition-duration: 0.4s;
+    border-radius: 4px;
+}
+
+.sidebar li:hover{
+    background-color: #fdd28ec4;
+}
+
+.sidebar a{
+    text-decoration: none;
+    color: #000000;
+    font-size: 1.3em;
+}
+
+.category-logo{
+    float: left;
+    width: auto;
+    height: 1.5em;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
 .content-container {
     margin: 8px;
+    margin-left: 22%;
     padding-top: 65px;
 }
