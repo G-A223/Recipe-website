@@ -3,7 +3,7 @@
 {% block body %}
     {% if app.user %}
         <ul style="list-style-type: none; margin: 0; padding: 0;">
-            <li>Привет, {{ app.user.login }}</li>
+            <li>Привет, {% if 'ROLE_ADMIN' in app.user.roles %}админ {% endif %}{{ app.user.login }}</li>
             <li><a href="{{ path('logout') }}">Выйти</a></li>
         </ul>
     {% endif %}

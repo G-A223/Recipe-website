@@ -7,6 +7,17 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+// user1
+// g-a221
+// anastas2005anastas@gmail.ru
+// 123456abcd
+
+// admin
+// G-A223
+// G-A223@yandex.ru
+// abcd_abcd123
+
+
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface

@@ -3,12 +3,70 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Allrecipes{% endblock %}</title>
-        <style>
-        {% block stylesheets %}
-        {% endblock %}
-        </style>
+        <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+        <link rel="icon" type="image/png" href="{{ asset('icons/logo.png') }}"/>
+        {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <nav class="menu">
+            <div class="logo"><a href="{{ path('home') }}"><image src="{{ asset('icons/Allrecipes-logo.png') }}"></a></div>
+
+            <div class="auth-section">
+                <ul>
+                    {% if not app.user %}
+                        <li>
+                            <button class="auth-btn">
+                                <a href="{{ path('login') }}">
+                                    <span>Вход</span>
+                                    <image class="btn-logo" src="{{ asset('icons/login.png') }}">
+                                </a>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button class="auth-btn">
+                                <a href="{{ path('registration' )}}">
+                                    <span>Регистрация</span>
+                                    <image class="btn-logo" src="{{ asset('icons/register.png') }}">
+                                </a>
+                            </button>
+                        </li>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <li>Привет, {% if 'ROLE_ADMIN' in app.user.roles %}админ {% endif %}{{ app.user.login }}</li>
+                        <li>
+                            <button class="auth-btn">
+                                <a href="{{ path('logout') }}">
+                                    <span>Выйти</span>
+                                    <image class="btn-logo" src="{{ asset('icons/logout.png') }}">
+                                </a>
+                            </button>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <div class="content-container">
+            {% block body %}{% endblock %}
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+            <h1>sdfsv</h1>
+        </div>
+
     </body>
 </html>

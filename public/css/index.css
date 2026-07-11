@@ -1,0 +1,71 @@
+body {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 1em;
+    background-color: rgb(241, 241, 241);
+    margin: 0px;
+}
+
+.menu{
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.logo img{
+    float: left;
+    width: 10%;
+    height: auto;
+    margin: 15px 0px 15px 80px;
+}
+
+.auth-section {
+    float: right;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.auth-section li{
+    display: inline-block;
+}
+
+.auth-section ul{
+    align-items: center;
+}
+
+.auth-btn {
+    margin: 0px 5px 0px 5px;
+    border-radius: 8px;
+    border: 2px solid #000000;
+    background-color: #00000000;
+    transition-duration: 0.4s;
+}
+
+.auth-btn a{
+    color:#000000;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.auth-btn:hover{
+    background-color: #feae2c;
+}
+
+.btn-logo{
+    float: right;
+    width: auto;
+    height: 1.5em;
+    margin: 5px;
+}
+
+.content-container {
+    margin: 8px;
+    padding-top: 65px;
+}
