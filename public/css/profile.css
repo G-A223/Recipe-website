@@ -1,0 +1,87 @@
+.profile-container{
+    display: flex;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.profile{
+    border-collapse: collapse;
+}
+
+.profile-column{
+    padding: 0;
+	width: fit-content;
+	vertical-align: top;
+    padding-right: 50px;
+}
+
+.profile-img{
+    width: 15em;
+    height: 15em;
+    border-radius: 8px;
+}
+
+.load-btn {
+    width: 100%;
+    padding: 5px;
+    border-radius: 8px;
+    border: none;
+    background-color: #feae2c;
+    color:rgb(255, 255, 255);
+    transition-duration: 0.4s;
+}
+
+.load-btn:hover{
+    background-color: #f4a527;
+}
+
+.profile-info{
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.admin-label {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    background: #ffffff00;
+    border-radius: 50px;
+    border: 2px solid #000;
+    margin-bottom: 15px;
+}
+
+.admin-btn {
+    font-size: 20px;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #feae2c;
+    color:rgb(255, 255, 255);
+    transition-duration: 0.4s;
+}
+
+.admin-btn a{
+    color:#ffffff;
+    text-decoration: none;
+    font-size: 0.8em;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.admin-btn:hover{
+    background-color: #f4a527;
+}
+
+.logout-container{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+

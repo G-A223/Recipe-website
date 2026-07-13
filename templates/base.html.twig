@@ -34,14 +34,11 @@
                     {% endif %}
 
                     {% if app.user %}
-                        <li>Привет, {% if 'ROLE_ADMIN' in app.user.roles %}админ {% endif %}{{ app.user.login }}</li>
                         <li>
-                            <button class="auth-btn">
-                                <a href="{{ path('logout') }}">
-                                    <span>Выйти</span>
-                                    <image class="btn-logo" src="{{ asset('icons/logout.png') }}">
-                                </a>
-                            </button>
+                            <a href="{{ path('profile') }}" class="profile-btn">
+                                <image class="avatar" src="{{ asset('images/avatar.jpg') }}">
+                                {{ app.user.login }}
+                            </a>
                         </li>
                     {% endif %}
                 </ul>

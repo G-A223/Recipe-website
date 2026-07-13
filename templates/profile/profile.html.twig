@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="profile-container">
+        <table class="profile">
+            <tr>
+                <td class="profile-column">
+                    <image src="{{ asset('images/avatar.jpg') }}" class="profile-img">
+                    <br>
+                    <button class="load-btn">Загрузить фотографию</button>
+                </td>
+                <td class="profile-column">
+                    {% if 'ROLE_ADMIN' in app.user.roles %}
+                        <p class="admin-label">👑 Администратор</p>
+                    {% endif %}
+                    <table class="profile-info">
+                        <tr>
+                            <td>Логин:</td>
+                            <td>{{ app.user.login }}</td>
+                        </tr>
+                        <tr>
+                            <td>Электронная почта:</td>
+                            <td>{{ app.user.email }}</td>
+                        </tr>
+                    </table>
+                    {% if 'ROLE_ADMIN' in app.user.roles %}
+                        <button class="admin-btn">
+                            <a href="#">
+                                <span>Редактировать категории</span>
+                                <image class="btn-logo" src="{{ asset('icons/edit.png') }}">
+                            </a>
+                        </button>
+
+                        <button class="admin-btn">
+                            <a href="#">
+                                <span>Добавить рецепт</span>
+                                <image class="btn-logo" src="{{ asset('icons/add.png') }}">
+                            </a>
+                        </button>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="logout-container">
+        <button class="auth-btn">
+            <a href="{{ path('logout') }}">
+                <span>Выйти</span>
+                <image class="btn-logo" src="{{ asset('icons/logout.png') }}">
+            </a>
+        </button>
+    </div>
+{% endblock %}

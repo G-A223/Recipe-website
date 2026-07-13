@@ -16,8 +16,11 @@ body {
 }
 
 .logo img{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     float: left;
-    width: 10%;
+    width: 15%;
     height: auto;
     margin: 15px 0px 15px 80px;
 }
@@ -117,8 +120,30 @@ body {
     margin-right: 10px;
 }
 
+.profile-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 3px;
+    text-decoration: none;
+    color: #feae2c;
+    font-size: 20px;
+}
+
+.profile-btn:hover{
+    text-decoration: underline;
+    color: #bb8021;
+}
+
+.avatar{
+    width: 2em;
+    height: auto;
+    border-radius: 5px;
+}
+
 .content-container {
     margin: 8px;
     margin-left: 22%;
-    padding-top: 65px;
+    padding-top: 95px;
 }
