@@ -1,20 +1,57 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/recipe_list.css') }}">
+{% endblock %}
+
 {% block body %}
-    {% if app.user %}
-        <ul style="list-style-type: none; margin: 0; padding: 0;">
-            <li>Привет, {% if 'ROLE_ADMIN' in app.user.roles %}админ {% endif %}{{ app.user.login }}</li>
-            <li><a href="{{ path('logout') }}">Выйти</a></li>
-        </ul>
-    {% endif %}
-    <h1 style="text-align: center">Главная страница Allrecipes</h1>
+    <div class="recipes-list">
+        <div class="recipe-card">
+            <a href="#"><image class="recipe-img" src="{{ asset('images/recipe1.jpg') }}"></a>
+            <div class="recipe-descr">
+                    <a href="#">
+                        <h3>Recipe 1</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in pulvinar magna.
+                            Phasellus euismod mauris sapien, nec dignissim diam commodo eget. Mauris enim arcu,
+                            blandit vitae iaculis sit amet, scelerisque vitae dui. Nullam convallis lobortis magna,
+                            non consectetur urna. Phasellus nec purus metus. Ut eu urna nunc. Quisque pulvinar, dolor
+                            a consectetur volutpat, nisi leo dignissim quam, vitae fringilla neque lorem sit amet lectus.
+                        </p>
+                    </a>
+            </div>
+        </div>
 
-    {% if not app.user %}
-    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-        <button><a href="{{ path('login') }}">Вход</a></button>
-        <button><a href="{{ path('registration' )}}">Регистрация</a></button>
+        <div class="recipe-card">
+            <a href="#"><image class="recipe-img" src="{{ asset('images/recipe2.jpg') }}"></a>
+            <div class="recipe-descr">
+                    <a href="#">
+                        <h3>Recipe 2</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in pulvinar magna.
+                            Phasellus euismod mauris sapien, nec dignissim diam commodo eget. Mauris enim arcu,
+                            blandit vitae iaculis sit amet, scelerisque vitae dui. Nullam convallis lobortis magna,
+                            non consectetur urna. Phasellus nec purus metus. Ut eu urna nunc. Quisque pulvinar, dolor
+                            a consectetur volutpat, nisi leo dignissim quam, vitae fringilla neque lorem sit amet lectus.
+                        </p>
+                    </a>
+            </div>
+        </div>
+
+        <div class="recipe-card">
+            <a href="#"><image class="recipe-img" src="{{ asset('images/recipe3.jpg') }}"></a>
+            <div class="recipe-descr">
+                    <a href="#">
+                        <h3>Recipe 3</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in pulvinar magna.
+                            Phasellus euismod mauris sapien, nec dignissim diam commodo eget. Mauris enim arcu,
+                            blandit vitae iaculis sit amet, scelerisque vitae dui. Nullam convallis lobortis magna,
+                            non consectetur urna. Phasellus nec purus metus. Ut eu urna nunc. Quisque pulvinar, dolor
+                            a consectetur volutpat, nisi leo dignissim quam, vitae fringilla neque lorem sit amet lectus.
+                        </p>
+                    </a>
+            </div>
+        </div>
     </div>
-    {% endif %}
-
-
 {% endblock %}
