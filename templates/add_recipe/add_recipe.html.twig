@@ -8,88 +8,54 @@
     <div class="add-recipe-container">
         <h1>Создание нового рецепта</h1>
 
+        {% for message in app.flashes('error') %}
+            <div class="flash-error">{{ message }}</div>
+        {% endfor %}
+        {% for message in app.flashes('success') %}
+            <div class="flash-success">{{ message }}</div>
+        {% endfor %}
+
         <form class="add-recipe" method="POST" enctype="multipart/form-data">
             <div class="form-section">
                 <h2>Основная информация</h2>
 
                 <div class="form-group">
                     <label for="recipe-title">Название рецепта</label>
-                    <input type="text" id="recipe-title" class="form-input" placeholder="Введите название рецепта" required>
+                    <input type="text" id="recipe-title" name="title" class="form-input" placeholder="Введите название рецепта" required>
                 </div>
 
                 <div class="form-group">
                     <label for="recipe-image">Главное изображение</label>
-                    <input type="file" id="recipe-image" class="form-input" accept="image/*">
+                    <input type="file" id="recipe-image" name="image" class="form-input" accept="image/*">
                     <div class="image-preview" id="main-image-preview"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="recipe-description">Краткое описание</label>
-                    <textarea id="recipe-description" class="form-input" placeholder="Опишите рецепт в нескольких предложениях..." rows="4"></textarea>
+                    <textarea id="recipe-description" name="description" class="form-input" placeholder="Опишите рецепт в нескольких предложениях..." rows="4" required></textarea>
                 </div>
-
 
                 <div class="form-group">
                     <label>Теги рецепта</label>
                     <div class="tags-container" id="tags-container">
-                        <div class="tag-item">
-                            <input type="checkbox" id="tag-breakfast" value="breakfast">
-                            <label for="tag-breakfast">Завтрак</label>
-                        </div>
-                        <div class="tag-item">
-                            <input type="checkbox" id="tag-lunch" value="lunch">
-                            <label for="tag-lunch">Обед</label>
-                        </div>
-                        <div class="tag-item">
-                            <input type="checkbox" id="tag-dinner" value="dinner">
-                            <label for="tag-dinner">Ужин</label>
-                        </div>
+                        {% for tag in tags %}
+                            <div class="tag-item">
+                                <input type="checkbox" id="tag-{{ tag.id }}" name="tags[]" value="{{ tag.id }}">
+                                <label for="tag-{{ tag.id }}">{{ tag.name }}</label>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Категории рецепта</label>
                     <div class="categories-container" id="categories-container">
-                        <div class="category-item">
-                            <input type="checkbox" id="cat-snacks" value="snacks">
-                            <label for="cat-snacks">Закуски</label>
-                        </div>
-                        <div class="category-item">
-                            <input type="checkbox" id="cat-salads" value="salads">
-                            <label for="cat-salads">Салаты</label>
-                        </div>
-                        <div class="category-item">
-                            <input type="checkbox" id="cat-soups" value="soups">
-                            <label for="cat-soups">Первые блюда</label>
-                        </div>
-                        <div class="category-item">
-                            <input type="checkbox" id="cat-main" value="main">
-                            <label for="cat-main">Вторые блюда</label>
-                        </div>
-                        <div class="category-item">
-                            <input type="checkbox" id="cat-garnishes" value="garnishes">
-                            <label for="cat-garnishes">Гарниры</label>
-                        </div>
-                        <div class="category-item">
-                            <input type="checkbox" id="cat-desserts" value="desserts">
-                            <label for="cat-desserts">Десерты</label>
-                        </div>
-                        <div class="category-item">
-                            <input type="checkbox" id="cat-bakery" value="bakery">
-                            <label for="cat-bakery">Выпечка</label>
-                        </div>
-                        <div class="category-item">
-                            <input type="checkbox" id="cat-drinks" value="drinks">
-                            <label for="cat-drinks">Напитки</label>
-                        </div>
-                        <div class="category-item">
-                            <input type="checkbox" id="cat-preserves" value="preserves">
-                            <label for="cat-preserves">Заготовки</label>
-                        </div>
-                        <div class="category-item">
-                            <input type="checkbox" id="cat-sauces" value="sauces">
-                            <label for="cat-sauces">Соусы</label>
-                        </div>
+                        {% for category in categories %}
+                            <div class="category-item">
+                                <input type="checkbox" id="cat-{{ category.id }}" name="categories[]" value="{{ category.id }}">
+                                <label for="cat-{{ category.id }}">{{ category.name }}</label>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -101,11 +67,11 @@
                     <div class="ingredient-item">
                         <div class="form-group">
                             <label>Название ингредиента</label>
-                            <input type="text" class="form-input ingredient-name" placeholder="Например: Мука">
+                            <input type="text" class="form-input ingredient-name" name="ingredient_name[]" placeholder="Например: Мука">
                         </div>
                         <div class="form-group">
                             <label>Количество</label>
-                            <input type="text" class="form-input ingredient-amount" placeholder="Например: 500 г">
+                            <input type="text" class="form-input ingredient-amount" name="ingredient_amount[]" placeholder="Например: 500 г">
                         </div>
                         <button type="button" class="remove-btn" onclick="removeIngredient(this)">✕</button>
                     </div>
@@ -126,12 +92,12 @@
                         </div>
                         <div class="form-group">
                             <label>Изображение к шагу (необязательно)</label>
-                            <input type="file" class="form-input step-image" accept="image/*">
+                            <input type="file" class="form-input step-image" name="step_image_0" accept="image/*">
                             <div class="image-preview step-image-preview"></div>
                         </div>
                         <div class="form-group">
                             <label>Описание шага</label>
-                            <textarea class="form-input step-description" placeholder="Опишите, что нужно сделать на этом шаге..." rows="3"></textarea>
+                            <textarea class="form-input step-description" name="step_description[]" placeholder="Опишите, что нужно сделать на этом шаге..." rows="3"></textarea>
                         </div>
                         <button type="button" class="remove-btn" onclick="removeStep(this)">✕</button>
                     </div>
@@ -150,6 +116,7 @@
     </div>
 {% endblock %}
 
+
 {% block javascripts %}
     <script>
         let ingredientCounter = 1;
@@ -164,29 +131,21 @@
             ingredientItem.innerHTML = `
                 <div class="form-group">
                     <label>Название ингредиента</label>
-                    <input type="text" class="form-input ingredient-name" placeholder="Например: Мука">
+                    <input type="text" class="form-input ingredient-name" name="ingredient_name[]" placeholder="Например: Мука">
                 </div>
                 <div class="form-group">
                     <label>Количество</label>
-                    <input type="text" class="form-input ingredient-amount" placeholder="Например: 500 г">
+                    <input type="text" class="form-input ingredient-amount" name="ingredient_amount[]" placeholder="Например: 500 г">
                 </div>
                 <button type="button" class="remove-btn" onclick="removeIngredient(this)">✕</button>
             `;
 
             ingredientsList.appendChild(ingredientItem);
-            updateIngredientsNumbers();
         }
 
         function removeIngredient(button) {
             const ingredientItem = button.parentElement;
             ingredientItem.remove();
-            updateIngredientsNumbers();
-        }
-
-        function updateIngredientsNumbers() {
-            const ingredients = document.querySelectorAll('.ingredient-item');
-            ingredients.forEach((item, index) => {
-            });
         }
 
         function addStep() {
@@ -201,12 +160,12 @@
                 </div>
                 <div class="form-group">
                     <label>Изображение к шагу (необязательно)</label>
-                    <input type="file" class="form-input step-image" accept="image/*">
+                    <input type="file" class="form-input step-image" name="step_image_${stepCounter - 1}" accept="image/*">
                     <div class="image-preview step-image-preview"></div>
                 </div>
                 <div class="form-group">
                     <label>Описание шага</label>
-                    <textarea class="form-input step-description" placeholder="Опишите, что нужно сделать на этом шаге..." rows="3"></textarea>
+                    <textarea class="form-input step-description" name="step_description[]" placeholder="Опишите, что нужно сделать на этом шаге..." rows="3"></textarea>
                 </div>
                 <button type="button" class="remove-btn" onclick="removeStep(this)">✕</button>
             `;

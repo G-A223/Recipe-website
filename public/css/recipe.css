@@ -110,12 +110,14 @@
 }
 
 .comment-section{
+    width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     padding: 15px;
     gap: 5px;
+    box-sizing: border-box;
 }
 
 .post-comment{
@@ -124,6 +126,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 .comment-actions{
@@ -233,4 +236,68 @@
 
 .change-comment-btn:hover{
     color:#81540c;
+}
+
+.recipe-tags-categories {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 20px;
+    background-color: rgb(249, 249, 249);
+    border-radius: 8px;
+    margin: 10px 0 20px 0;
+    box-sizing: border-box;
+}
+
+.tags,
+.categories {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tags strong,
+.categories strong {
+    font-size: 14px;
+    color: #333;
+    margin-right: 5px;
+    min-width: 80px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: #feae2c;
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+}
+
+.tag:hover {
+    background-color: #e19924;
+    transform: scale(1.05);
+}
+
+.category {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: rgb(255, 255, 255);
+    color: #555;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.category:hover {
+    border-color: #feae2c;
+    color: #feae2c;
+    transform: scale(1.05);
 }

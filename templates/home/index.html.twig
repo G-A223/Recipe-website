@@ -6,52 +6,36 @@
 
 {% block body %}
     <div class="recipes-list">
-        <div class="recipe-card">
-            <a href="{{ path('recipe') }}"><image class="recipe-img" src="{{ asset('images/recipe1.jpg') }}"></a>
-            <div class="recipe-descr">
-                    <a href="{{ path('recipe') }}">
-                        <h3>Recipe 1</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in pulvinar magna.
-                            Phasellus euismod mauris sapien, nec dignissim diam commodo eget. Mauris enim arcu,
-                            blandit vitae iaculis sit amet, scelerisque vitae dui. Nullam convallis lobortis magna,
-                            non consectetur urna. Phasellus nec purus metus. Ut eu urna nunc. Quisque pulvinar, dolor
-                            a consectetur volutpat, nisi leo dignissim quam, vitae fringilla neque lorem sit amet lectus.
-                        </p>
+        {% if recipes is empty %}
+            <p class="no-recipes">Нет рецептов. Будьте первым, кто добавит рецепт!</p>
+        {% else %}
+            {% for recipe in recipes %}
+                <div class="recipe-card">
+                    <a href="{{ path('recipe_show', {'id': recipe.id}) }}">
+                        {% if recipe.image %}
+                            <img class="recipe-img" src="{{ asset('images/recipes/' ~ recipe.image) }}" alt="{{ recipe.title }}">
+                        {% else %}
+                            <img class="recipe-img" src="{{ asset('images/default-recipe.jpg') }}" alt="Рецепт">
+                        {% endif %}
                     </a>
-            </div>
-        </div>
-
-        <div class="recipe-card">
-            <a href="{{ path('recipe') }}"><image class="recipe-img" src="{{ asset('images/recipe2.jpg') }}"></a>
-            <div class="recipe-descr">
-                    <a href="{{ path('recipe') }}">
-                        <h3>Recipe 2</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in pulvinar magna.
-                            Phasellus euismod mauris sapien, nec dignissim diam commodo eget. Mauris enim arcu,
-                            blandit vitae iaculis sit amet, scelerisque vitae dui. Nullam convallis lobortis magna,
-                            non consectetur urna. Phasellus nec purus metus. Ut eu urna nunc. Quisque pulvinar, dolor
-                            a consectetur volutpat, nisi leo dignissim quam, vitae fringilla neque lorem sit amet lectus.
-                        </p>
-                    </a>
-            </div>
-        </div>
-
-        <div class="recipe-card">
-            <a href="{{ path('recipe') }}"><image class="recipe-img" src="{{ asset('images/recipe3.jpg') }}"></a>
-            <div class="recipe-descr">
-                    <a href="{{ path('recipe') }}">
-                        <h3>Recipe 3</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in pulvinar magna.
-                            Phasellus euismod mauris sapien, nec dignissim diam commodo eget. Mauris enim arcu,
-                            blandit vitae iaculis sit amet, scelerisque vitae dui. Nullam convallis lobortis magna,
-                            non consectetur urna. Phasellus nec purus metus. Ut eu urna nunc. Quisque pulvinar, dolor
-                            a consectetur volutpat, nisi leo dignissim quam, vitae fringilla neque lorem sit amet lectus.
-                        </p>
-                    </a>
-            </div>
-        </div>
+                    <div class="recipe-descr">
+                        <a href="{{ path('recipe_show', {'id': recipe.id}) }}">
+                            <h3>{{ recipe.title }}</h3>
+                            <p>{{ recipe.description|slice(0, 200) }}{% if recipe.description|length > 200 %}...{% endif %}</p>
+                            <div class="recipe-meta">
+                                <span class="recipe-date">{{ recipe.createdAt|date('d.m.Y') }}</span>
+                                {% if recipe.categories|length > 0 %}
+                                    <span class="recipe-categories">
+                                        {% for category in recipe.categories %}
+                                            <span class="category-tag">{{ category.name }}</span>
+                                        {% endfor %}
+                                    </span>
+                                {% endif %}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}

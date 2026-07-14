@@ -28,33 +28,20 @@ class Recipe
     #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
-    private ?\DateTimeInterface $updatedAt = null;
-
-    // Связь с пользователем (автор рецепта)
-    #[ORM\ManyToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $author = null;
-
-    // Связь с категориями (ManyToMany)
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'recipes')]
     #[ORM\JoinTable(name: 'recipe_category')]
     private Collection $categories;
 
-    // Связь с тегами (ManyToMany)
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'recipes')]
     #[ORM\JoinTable(name: 'recipe_tag')]
     private Collection $tags;
 
-    // Ингредиенты (OneToMany)
     #[ORM\OneToMany(targetEntity: Ingredient::class, mappedBy: 'recipe', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $ingredients;
 
-    // Шаги (OneToMany)
     #[ORM\OneToMany(targetEntity: Step::class, mappedBy: 'recipe', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $steps;
 
-    // Комментарии (OneToMany)
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'recipe', cascade: ['remove'])]
     private Collection $comments;
 
@@ -114,28 +101,6 @@ class Recipe
     public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): static
-    {
-        $this->updatedAt = $updatedAt;
-        return $this;
-    }
-
-    public function getAuthor(): ?User
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?User $author): static
-    {
-        $this->author = $author;
         return $this;
     }
 
