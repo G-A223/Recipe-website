@@ -1,0 +1,236 @@
+.article-container{
+    width: 80%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.article-container h1{
+    padding: 10px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.article-container h2{
+    padding: 5px 10px 0 10px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.article-img{
+    width: 100%;
+    height: auto;
+}
+
+.description{
+    padding: 20px;
+}
+
+.ingridients{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.ingridients tr{
+   border-bottom: 1px dashed rgb(197, 197, 197);
+}
+
+.ingridients tr:last-child{
+   border-bottom: none;
+}
+
+.ingridient{
+    flex: left;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    padding-left: 50px;
+}
+
+.amount{
+    float: right;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    padding-right: 50px;
+}
+
+.recipe{
+    padding: 15px;
+    gap: 5px;
+}
+
+.recipe-step{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.step-badge{
+    background-color: #feae2c;
+    border-radius: 4px;
+    text-transform: uppercase;
+    padding: 10px;
+    float: left;
+    font-weight: bold;
+}
+
+.step-img{
+    height: 25em;
+    width: auto;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+}
+
+.edit-recipe{
+    width:100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 15px;
+    margin-right: 10px;
+}
+
+.recipe-btn{
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    color:#feae2c;
+    text-decoration: solid underline;
+    font-size: 18px;
+}
+
+.recipe-btn:hover{
+    color:#81540c;
+}
+
+.comment-section{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 15px;
+    gap: 5px;
+}
+
+.post-comment{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.comment-actions{
+    display: flex;
+    width: 100%;
+}
+
+.comment-btn{
+    margin-left: auto;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #feae2c;
+    color:rgb(255, 255, 255);
+    transition-duration: 0.4s;
+}
+
+.comment-btn:hover{
+    background-color: #e19924;
+}
+
+.user-comment-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 3px;
+    font-size: 20px;
+}
+
+.user-comment-avatar{
+    width: 2em;
+    height: 2em;
+    border-radius: 5px;
+}
+
+.comment-field{
+    margin: 10px;
+    width: 95%;
+    border-radius: 4px;
+}
+
+.comments-list{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.comment{
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 20px;
+}
+
+.comment-content{
+    background-color: rgb(243, 243, 243);
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.change-comment{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.comment-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.comment-profile{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.comment-avatar{
+    width: 1.6em;
+    height: auto;
+    border-radius: 5px;
+}
+
+.comment-login{
+    margin: 0;
+}
+
+.comment-date{
+    margin: 0;
+    color: rgb(165, 165, 165);
+}
+
+.change-comment-btn{
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    color:#feae2c;
+    text-decoration: solid underline;
+}
+
+.change-comment-btn:hover{
+    color:#81540c;
+}

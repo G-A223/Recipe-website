@@ -1,0 +1,220 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/recipe.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="article-container">
+        <h1>Recipe</h1>
+        <image class="article-img" src="{{ asset('images/recipe1.jpg') }}">
+        <p class="description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in pulvinar magna.
+            Phasellus euismod mauris sapien, nec dignissim diam commodo eget. Mauris enim arcu,
+            blandit vitae iaculis sit amet, scelerisque vitae dui. Nullam convallis lobortis magna,
+            non consectetur urna. Phasellus nec purus metus. Ut eu urna nunc. Quisque pulvinar, dolor
+            a consectetur volutpat, nisi leo dignissim quam, vitae fringilla neque lorem sit amet lectus.
+        </p>
+        <h2>Продукты для рецепта</h2>
+
+        <table class="ingridients">
+            <tr>
+                <td class="ingridient">
+                    Ингридиент 1
+                </td>
+                <td class="amount">
+                    Количество стол. лож.
+                </td>
+            </tr>
+
+            <tr>
+                <td class="ingridient">
+                    Ингридиент 2
+                </td>
+                <td class="amount">
+                    Количество г
+                </td>
+            </tr>
+
+            <tr>
+                <td class="ingridient">
+                    Ингридиент 3
+                </td>
+                <td class="amount">
+                    Количество стакана
+                </td>
+            </tr>
+
+            <tr>
+                <td class="ingridient">
+                    Ингридиент 4
+                </td>
+                <td class="amount">
+                    Количество литров
+                </td>
+            </tr>
+
+            <tr>
+                <td class="ingridient">
+                    Ингридиент 5
+                </td>
+                <td class="amount">
+                    Количество кг
+                </td>
+            </tr>
+        </table>
+
+        <div class="recipe">
+            <h2>Пошаговый рецепт</h2>
+            <div class="recipe-step">
+                <span class="step-badge">Шаг 1</span>
+                <image class="step-img" src="{{ asset('images/recipe_step1.jpg') }}" alt="">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in pulvinar magna.
+                    Phasellus euismod mauris sapien, nec dignissim diam commodo eget. Mauris enim arcu,
+                    blandit vitae iaculis sit amet, scelerisque vitae dui.
+                </p>
+            </div>
+            <div class="recipe-step">
+                <span class="step-badge">Шаг 2</span>
+                <image class="step-img" src="#" alt="">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+            </div>
+            <div class="recipe-step">
+                <span class="step-badge">Шаг 3</span>
+                <image class="step-img" src="{{ asset('images/recipe_step2.jpg') }}" alt="">
+                <p>
+                    Phasellus euismod mauris sapien, nec dignissim diam commodo eget. Mauris enim arcu,
+                    blandit vitae iaculis sit amet, scelerisque vitae dui. Nullam convallis lobortis magna,
+                    non consectetur urna. Phasellus nec purus metus. Ut eu urna nunc. Quisque pulvinar, dolor
+                    a consectet
+                </p>
+            </div>
+            <div class="recipe-step">
+                <span class="step-badge">Шаг 4</span>
+                <image class="step-img" src="{{ asset('images/recipe_step3.jpg') }}" alt="">
+                <p>
+                    Phasellus euismod mauris sapien, nec dignissim diam commodo eget.
+                </p>
+            </div>
+            <div class="recipe-step">
+                <span class="step-badge">Шаг 5</span>
+                <image class="step-img" src="#" alt="">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in pulvinar magna.
+                    Phasellus euismod mauris sapien, nec dignissim diam commodo eget. Mauris enim arcu,
+                    blandit vitae iaculis sit amet, scelerisque vitae dui. Nullam convallis lobortis magna,
+                    non consectetur urna. Phasellus nec purus metus. Ut eu urna nunc. Quisque pulvinar, dolor
+                    a consectetur volutpat, nisi leo dignissim quam, vitae fringilla neque lorem sit amet lectus.
+                </p>
+            </div>
+        </div>
+
+        {% if "ROLE_ADMIN" in app.user.roles %}
+            <div class="edit-recipe">
+                <button class="recipe-btn">Редактировать рецепт</button>
+                <button class="recipe-btn">Удалить рецепт</button>
+            </div>
+        {% endif %}
+
+        <div class="comment-section">
+            <h2>Комментарии</h2>
+
+            {% if app.user %}
+                <form class="post-comment">
+                    <div class="user-comment-info">
+                        <image class="user-comment-avatar" src="{{ asset('images/avatar.jpg') }}">
+                        {{ app.user.login }}
+                    </div>
+
+                    <textarea class="comment-field">
+                    </textarea>
+
+                    <div class="comment-actions">
+                        <button class="comment-btn">Оставить комментарий</button>
+                    </div>
+                </form>
+            {% endif %}
+
+            {% if not app.user %}
+                <p>Войдите или зарегистрируйтесь, чтобы оставить комментарий</p>
+            {% endif %}
+
+            <p>Будьте первым, кто оставит комментарий</p>
+
+            <div class="comments-list">
+                <div class="comment">
+                    <div class="comment-info">
+                        <div class="comment-profile">
+                            <img class="comment-avatar" src="{{ asset('images/avatar.jpg') }}" alt="">
+                            <p class="comment-login">login1</p>
+                        </div>
+                        <p class="comment-date">ДДДД.ММММ.ГГГГ</p>
+                    </div>
+
+                    <div class="comment-content">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in pulvinar magna.
+                            Phasellus euismod mauris sapien, nec dignissim diam commodo eget. Mauris enim arcu,
+                            blandit vitae iaculis sit amet, scelerisque vitae dui. Nullam convallis lobortis magna,
+                            non consectetur urna. Phasellus nec purus metus. Ut eu urna nunc. Quisque pulvinar, dolor
+                            a consectetur volutpat, nisi leo dignissim quam, vitae fringilla neque lorem sit amet lectus.
+                        </p>
+                    </div>
+
+                    <div class="change-comment">
+                        <button class="change-comment-btn">Редактировать</button>
+                        <button class="change-comment-btn">Удалить</button>
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <div class="comment-info">
+                        <div class="comment-profile">
+                            <img class="comment-avatar" src="{{ asset('images/avatar.jpg') }}" alt="">
+                            <p class="comment-login">login2</p>
+                        </div>
+                        <p class="comment-date">ДДДД.ММММ.ГГГГ</p>
+                    </div>
+
+                    <div class="comment-content">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in pulvinar magna.
+                        </p>
+                    </div>
+
+                    <div class="change-comment">
+                        <button class="change-comment-btn">Редактировать</button>
+                        <button class="change-comment-btn">Удалить</button>
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <div class="comment-info">
+                        <div class="comment-profile">
+                            <img class="comment-avatar" src="{{ asset('images/avatar.jpg') }}" alt="">
+                            <p class="comment-login">login3</p>
+                        </div>
+                        <p class="comment-date">ДДДД.ММММ.ГГГГ</p>
+                    </div>
+
+                    <div class="comment-content">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in pulvinar magna.
+                            Phasellus euismod mauris sapien, nec dignissim diam commodo eget. Mauris enim arcu,
+                            blandit vitae iaculis sit amet, scelerisque vitae dui. Nullam convallis lobortis magna,
+                            non consectetur urna. Phasellus nec purus metus.
+                        </p>
+                    </div>
+
+                    <div class="change-comment">
+                        <button class="change-comment-btn">Редактировать</button>
+                        <button class="change-comment-btn">Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
