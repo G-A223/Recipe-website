@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/recipe_list.css') }}">
+{% endblock %}
+
+{% block title %}{{ category.name }} - Allrecipes{% endblock %}
+
+{% block body %}
+    <div class="category-header">
+        <h1>{{ category.name }}</h1>
+        <p>Рецепты в категории "{{ category.name }}"</p>
+    </div>
+
+    <div class="recipes-list">
+        {% if recipes is empty %}
+            <p class="no-recipes">В этой категории пока нет рецептов.</p>
+        {% else %}
+            {% for recipe in recipes %}
+                <div class="recipe-card">
+                    <a href="{{ path('recipe_show', {'id': recipe.id}) }}">
+                        {% if recipe.image %}
+                            <img class="recipe-img" src="{{ asset('images/recipes/' ~ recipe.image) }}" alt="{{ recipe.title }}">
+                        {% else %}
+                            <img class="recipe-img" src="{{ asset('images/default-recipe.jpg') }}" alt="Рецепт">
+                        {% endif %}
+                    </a>
+                    <div class="recipe-descr">
+                        <a href="{{ path('recipe_show', {'id': recipe.id}) }}">
+                            <h3>{{ recipe.title }}</h3>
+                            <p>{{ recipe.description|slice(0, 200) }}{% if recipe.description|length > 200 %}...{% endif %}</p>
+                            <div class="recipe-meta">
+                                <span class="recipe-date">{{ recipe.createdAt|date('d.m.Y') }}</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

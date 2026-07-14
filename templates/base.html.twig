@@ -48,66 +48,14 @@
         <div class="sidebar">
             <div class="sidebar-content">
                 <ul>
-                    <li>
-                        <a href="#">
-                            <span>Закуски</span>
-                            <image class="category-logo" src="{{ asset('icons/snacks.png') }}">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span>Салаты</span>
-                            <image class="category-logo" src="{{ asset('icons/salad.png') }}">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span>Первые блюда</span>
-                            <image class="category-logo" src="{{ asset('icons/soup.png') }}">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span>Вторые блюда</span>
-                            <image class="category-logo" src="{{ asset('icons/spaghetti.png') }}">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span>Гарниры</span>
-                            <image class="category-logo" src="{{ asset('icons/rice.png') }}">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span>Десерты</span>
-                            <image class="category-logo" src="{{ asset('icons/dessert.png') }}">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span>Выпечка</span>
-                            <image class="category-logo" src="{{ asset('icons/bakery.png') }}">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span>Напитки</span>
-                            <image class="category-logo" src="{{ asset('icons/lemonade.png') }}">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span>Заготовки</span>
-                            <image class="category-logo" src="{{ asset('icons/tomatoes.png') }}">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span>Соусы</span>
-                            <image class="category-logo" src="{{ asset('icons/sauce.png') }}">
-                        </a>
-                    </li>
+                    {% for category in get_categories() %}
+                        <li>
+                            <a href="{{ path('category_show', {'slug': category.slug}) }}">
+                                <span>{{ category.name }}</span>
+                                <img class="category-logo" src="{{ asset(category.icon) }}" alt="{{ category.name }}">
+                            </a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
