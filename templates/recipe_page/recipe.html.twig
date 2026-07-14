@@ -68,17 +68,24 @@
         <div class="comment-section">
             <h2>Комментарии</h2>
 
+            {% for message in app.flashes('error') %}
+                <div class="flash-error">{{ message }}</div>
+            {% endfor %}
+            {% for message in app.flashes('success') %}
+                <div class="flash-success">{{ message }}</div>
+            {% endfor %}
+
             {% if app.user %}
-                <form class="post-comment">
+                <form class="post-comment" action="{{ path('comment_add', {'recipeId': recipe.id}) }}" method="POST">
                     <div class="user-comment-info">
                         <img class="user-comment-avatar" src="{{ asset('images/avatar.jpg') }}" alt="Аватар">
                         {{ app.user.login }}
                     </div>
 
-                    <textarea class="comment-field" placeholder="Напишите комментарий..."></textarea>
+                    <textarea class="comment-field" name="content" placeholder="Напишите комментарий..." required></textarea>
 
                     <div class="comment-actions">
-                        <button class="comment-btn">Оставить комментарий</button>
+                        <button type="submit" class="comment-btn">Оставить комментарий</button>
                     </div>
                 </form>
             {% else %}
@@ -87,8 +94,8 @@
 
             {% if recipe.comments|length > 0 %}
                 <div class="comments-list">
-                    {% for comment in recipe.comments %}
-                        <div class="comment">
+                    {% for comment in recipe.comments|reverse %}
+                        <div class="comment" id="comment-{{ comment.id }}">
                             <div class="comment-info">
                                 <div class="comment-profile">
                                     <img class="comment-avatar" src="{{ asset('images/avatar.jpg') }}" alt="Аватар">
@@ -97,14 +104,24 @@
                                 <p class="comment-date">{{ comment.createdAt|date('d.m.Y H:i') }}</p>
                             </div>
 
-                            <div class="comment-content">
-                                <p>{{ comment.content }}</p>
+                            <div class="comment-content" id="comment-content-{{ comment.id }}">
+                                <p>{{ comment.content|nl2br }}</p>
                             </div>
 
-                            {% if app.user and app.user.id == comment.author.id or is_granted('ROLE_ADMIN') %}
+                            <div class="edit-comment-form" id="edit-form-{{ comment.id }}" style="display: none;">
+                                <form action="{{ path('comment_edit', {'id': comment.id}) }}" method="POST">
+                                    <textarea class="comment-field" name="content" rows="3">{{ comment.content }}</textarea>
+                                    <div class="edit-comment-actions">
+                                        <button type="submit" class="comment-btn">Сохранить</button>
+                                        <button type="button" class="cancel-btn" onclick="cancelEdit({{ comment.id }})">Отмена</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            {% if app.user and (app.user.id == comment.author.id or is_granted('ROLE_ADMIN')) %}
                                 <div class="change-comment">
-                                    <button class="change-comment-btn">Редактировать</button>
-                                    <button class="change-comment-btn">Удалить</button>
+                                    <button class="change-comment-btn" onclick="editComment({{ comment.id }})">Редактировать</button>
+                                    <button class="change-comment-btn" onclick="deleteComment({{ comment.id }})">Удалить</button>
                                 </div>
                             {% endif %}
                         </div>
@@ -115,4 +132,30 @@
             {% endif %}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function editComment(commentId) {
+            const content = document.getElementById('comment-content-' + commentId);
+            const editForm = document.getElementById('edit-form-' + commentId);
+
+            content.style.display = 'none';
+            editForm.style.display = 'block';
+        }
+
+        function cancelEdit(commentId) {
+            const content = document.getElementById('comment-content-' + commentId);
+            const editForm = document.getElementById('edit-form-' + commentId);
+
+            content.style.display = 'block';
+            editForm.style.display = 'none';
+        }
+
+        function deleteComment(commentId) {
+            if (confirm('Вы уверены, что хотите удалить этот комментарий?')) {
+                window.location.href = '{{ path('comment_delete', {'id': 'COMMENT_ID'}) }}'.replace('COMMENT_ID', commentId);
+            }
+        }
+    </script>
 {% endblock %}

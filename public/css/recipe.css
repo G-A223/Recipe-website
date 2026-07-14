@@ -170,6 +170,7 @@
 }
 
 .comments-list{
+    width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -300,4 +301,98 @@
     border-color: #feae2c;
     color: #feae2c;
     transform: scale(1.05);
+}
+
+.edit-comment-form {
+    width: 100%;
+    margin-top: 10px;
+    padding: 15px;
+    background-color: rgb(249, 249, 249);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.edit-comment-form .comment-field {
+    width: 100%;
+    margin: 0 0 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.edit-comment-form .comment-field:focus {
+    border-color: #feae2c;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(254, 174, 44, 0.1);
+}
+
+.edit-comment-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.edit-comment-actions .comment-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #feae2c;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.edit-comment-actions .comment-btn:hover {
+    background-color: #e19924;
+}
+
+.edit-comment-actions .cancel-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    color: #555;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.edit-comment-actions .cancel-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.comment {
+    transition: all 0.3s;
+}
+
+.comment:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+.comment-field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+    resize: vertical;
+    min-height: 80px;
+    transition: border-color 0.3s;
+}
+
+.comment-field:focus {
+    border-color: #feae2c;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(254, 174, 44, 0.1);
+}
+
+.comment-field::placeholder {
+    color: #aaa;
 }
